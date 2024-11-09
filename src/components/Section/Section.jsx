@@ -8,9 +8,7 @@ function Section({ title, endpoint, buttonText }) {
   const [albums, setAlbums] = useState([]);
   const fetchdata = async () => {
     try {
-      const response = await axios.get(
-        "https://qtify-backend-labs.crio.do/albums/top"
-      );
+      const response = await axios.get(`${endpoint}`);
       setAlbums(response.data);
     } catch (error) {
       console.log("Error fetching albums:", error);
@@ -42,12 +40,12 @@ function Section({ title, endpoint, buttonText }) {
           <button className={styles.button}>{buttonText}</button>
         </Box>
         <Grid container spacing={3}>
-                {albums.map((album) => (
-                  <Grid item key={album.id} md={2}>
-                    <Cards album={album} />
-                  </Grid>
-                ))}
-              </Grid>
+          {albums.map((album) => (
+            <Grid item key={album.id} md={2}>
+              <Cards album={album} />
+            </Grid>
+          ))}
+        </Grid>
       </Box>
     </Box>
   );
