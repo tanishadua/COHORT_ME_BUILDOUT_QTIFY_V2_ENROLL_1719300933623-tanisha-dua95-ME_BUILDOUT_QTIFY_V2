@@ -5,18 +5,16 @@ import { Card, CardMedia, Chip, Stack, Typography } from "@mui/material";
 
 function Cards({ album }) {
   return (
-    <Card
-      sx={{
+    <Card sx={{
         position: "relative",
-        height: "232px",
-        background: "#121212",
+        height: '100%',
+        background: '#121212',
         borderRadius: "10px 10px 0 0",
-      }}
-    >
+      }}>
       <Card
         sx={{
-          height: "205px",
-          width: "205px",
+          height: "13.5rem",
+          width: "13rem",
           position: "relative",
           borderRadius: "10px 10px 10px 10px",
         }}
@@ -27,11 +25,11 @@ function Cards({ album }) {
           title={album.title}
           alt={album.title}
           sx={{
-            height: "170px",
+            height: "10.5rem",
             overflow: "hidden",
           }}
         />
-        <Stack direction="row" top="176px" left="8px" position="absolute">
+        <Stack direction="row" top="11rem" left="8px" position="absolute">
           <Chip
             label={`${album.follows} follows`}
             sx={{
