@@ -1,7 +1,7 @@
 .button {
     font-family: 'Poppins',sans-serif;
-    background-color: var(--color-black);
-    color: var(--color-primary);
+    background-color: #121212;
+    color: #34c94b;
     border-radius: 12px;
     padding: 10px 16px;
     cursor:pointer;

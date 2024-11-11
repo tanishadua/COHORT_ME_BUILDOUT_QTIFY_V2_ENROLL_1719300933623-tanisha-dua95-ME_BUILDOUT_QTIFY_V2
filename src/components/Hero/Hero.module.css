@@ -1,6 +1,6 @@
 .hero {
-  background-color: var(--color-black);
-  color: var(--color-white);
+  background-color: #121212;
+  color: #ffffff;
   height: 270px;
   display: flex;
   justify-content: center;

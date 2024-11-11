@@ -1,68 +1,57 @@
-import React from "react"
-//import styles from "./Card.module.css"
-import { Card, CardMedia, Chip, Stack, Typography } from "@mui/material";
+import React from "react";
+import styles from "./Card.module.css";
+// import { useEffect, useState } from "react";
+import Tooltip from "@mui/material/Tooltip";
+import Chip from "@mui/material/Chip";
+
 
 
 function Cards({ album }) {
-  return (
-    <Card sx={{
-        position: "relative",
-        height: '100%',
-        background: '#121212',
-        borderRadius: "10px 10px 0 0",
-      }}>
-      <Card
-        sx={{
-          height: "13.5rem",
-          width: "13rem",
-          position: "relative",
-          borderRadius: "10px 10px 10px 10px",
-        }}
-      >
-        <CardMedia
-          component="img"
-          image={album.image}
-          title={album.title}
-          alt={album.title}
-          sx={{
-            height: "10.5rem",
-            overflow: "hidden",
-          }}
-        />
-        <Stack direction="row" top="11rem" left="8px" position="absolute">
-          <Chip
-            label={`${album.follows} follows`}
-            sx={{
-              color: "white",
-              backgroundColor: "black",
-              padding: "4px 8px 4px 8px",
-              height: "23px",
-              gap: "1px",
-              fontFamily: "Poppins, sans-serif",
-              fontSize: "10px",
-              fontWeight: 400,
-              lineHeight: "15px",
-              textAlign: "left",
-            }}
-            color="primary"
-          />
-        </Stack>
-      </Card>
-      <Typography
-        variant="body2"
-        sx={{
-          fontFamily: "Poppins, sans-serif",
-          fontSize: "14px",
-          fontWeight: 400,
-          lineHeight: "21px",
-          textAlign: "left",
-          color: "#ffffff",
-          paddingTop: "6px",
-        }}
-      >
-        {album.title}
-      </Typography>
-    </Card>
-  );
+    const type = album.type;
+    
+    const getCard = (type) => {
+        const { image, follows, title, songs } = album;
+        return (
+          <>
+            {type !== "Jaz" && (
+              <Tooltip title={`${songs.length}songs`} placement="top" arrow>
+                <div className={styles.wrapper}>
+                  <div className={styles.card}>
+                    <img src={image} alt="ima" />
+                    <div className={styles.banner}>
+                      <Chip
+                        label={`${follows} follows`}
+                        size="small"
+                        className={styles.chip}
+                      ></Chip>
+                    </div>
+                    <div className={styles.titleWrapper}>
+                      <p className={styles.para}>{title}</p>
+                    </div>
+                  </div>
+                </div>
+              </Tooltip>
+            )}
+            {type === "Jaz" && (
+              <div className={styles.wrapper}>
+                <div className={styles.card}>
+                  <img src={image} alt="ima" />
+                  <div className={styles.banner}>
+                    <Chip
+                      label={`follows`}
+                      size="small"
+                      className={styles.chip}
+                    ></Chip>
+                  </div>
+                  <div className={styles.titleWrapper}>
+                    <p className={styles.para}>{title}</p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </>
+        );
+      };
+      return getCard(type);
 }
 export default Cards;

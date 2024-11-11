@@ -1,53 +1,39 @@
 import styles from "./Section.module.css";
-import Grid from "@mui/material/Grid2";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import Cards from "../Card/Card";
-import { Button, Box, Typography } from "@mui/material";
-function Section({ title, endpoint, buttonText }) {
-  const [albums, setAlbums] = useState([]);
-  const fetchdata = async () => {
-    try {
-      const response = await axios.get(`${endpoint}`);
-      setAlbums(response.data);
-    } catch (error) {
-      console.log("Error fetching albums:", error);
-    }
+import Carousel from "../Carousel";
+function Section({ data, title }) {
+  const [toggle, setToggle] = useState(false);
+  const handleToggle = () => {
+    setToggle(!toggle);
   };
-  useEffect(() => {
-    fetchdata();
-  }, [endpoint]);
-
   return (
-    <Box>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          paddingLeft: "2rem",
-          backgroundColor: "#121212",
-        }}
-      >
-        <Box
-          component="header"
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
-          <p className={styles.p}>{title}</p>
-          <button className={styles.button}>{buttonText}</button>
-        </Box>
-        <Grid container spacing={3}>
-          {albums.map((album) => (
-            <Grid item key={album.id} md={2}>
-              <Cards album={album} />
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
-    </Box>
+    <div className={styles.main}>
+      <div className={styles.header}>
+          <h3>{title}</h3>
+          <button className={styles.button} onClick={handleToggle}>
+            {toggle ? "Show All" : "Collapse All"}
+          </button>
+      </div>
+      {data && data.length > 0 && (
+        <div className={styles.cardWrapper}>
+          {!toggle ? (
+            <div className={styles.wrapper}>
+              {data.map((item) => {
+                return <Cards album={item} />;
+              })}
+            </div>
+          ) : (
+            <>
+              <Carousel
+                data={data}
+                component={(data) => <Cards album={data} />}
+              />
+            </>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
 export default Section;
