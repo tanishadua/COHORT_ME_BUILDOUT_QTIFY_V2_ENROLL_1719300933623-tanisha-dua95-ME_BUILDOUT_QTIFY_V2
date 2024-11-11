@@ -12,7 +12,7 @@ function Section({ data, title }) {
       <div className={styles.header}>
           <h3>{title}</h3>
           <button className={styles.button} onClick={handleToggle}>
-            {toggle ? "Show All" : "Collapse All"}
+            {toggle ? "show all" : "Collapse All"}
           </button>
       </div>
       {data && data.length > 0 && (
