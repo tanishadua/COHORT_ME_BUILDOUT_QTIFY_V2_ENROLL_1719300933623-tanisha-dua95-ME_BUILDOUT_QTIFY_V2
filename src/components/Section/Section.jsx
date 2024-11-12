@@ -16,7 +16,7 @@ function Section({ data, title }) {
           </button>
       </div>
       {data && data.length > 0 && (
-        <div className={styles.cardWrapper}>
+        <div>
           {!toggle ? (
             <div className={styles.wrapper}>
               {data.map((item) => {
@@ -24,12 +24,12 @@ function Section({ data, title }) {
               })}
             </div>
           ) : (
-            <>
+            <div>
               <Carousel
                 data={data}
                 component={(data) => <Cards album={data} />}
               />
-            </>
+            </div>
           )}
         </div>
       )}

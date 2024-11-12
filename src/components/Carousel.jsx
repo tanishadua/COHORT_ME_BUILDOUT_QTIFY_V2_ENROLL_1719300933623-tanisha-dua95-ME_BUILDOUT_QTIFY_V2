@@ -15,9 +15,9 @@ export default function Carousel({ data, component }) {
   return (
     <div style={{position:"relative", backgroundColor: "#121212", paddingLeft: "2rem"}}>
         <Swiper
+        className={styles.mySwiper}
         initialSlide={0}
         modules={[Navigation]}
-        className="mySwiper"
         allowTouchMove
         breakpoints={{
           0: {
@@ -43,7 +43,7 @@ export default function Carousel({ data, component }) {
             <RightNavigation />
         </div>
         {data.map((album) => (
-          <SwiperSlide key={album.id}>{component(album)}</SwiperSlide>
+          <SwiperSlide className={styles.swiperSlide}>{component(album)}</SwiperSlide>
         ))}
       </Swiper>
     </div>
