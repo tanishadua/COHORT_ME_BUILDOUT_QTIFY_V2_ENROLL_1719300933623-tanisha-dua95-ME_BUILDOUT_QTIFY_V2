@@ -12,12 +12,12 @@ function Section({ data, title }) {
       <div className={styles.header}>
           <h3>{title}</h3>
           <button className={styles.button} onClick={handleToggle}>
-            {toggle ? "Show all" : "Collapse All"}
+            {toggle ? "Collapse All" : "Show All"}
           </button>
       </div>
       {data && data.length > 0 && (
         <div>
-          {!toggle ? (
+          {toggle ? (
             <div className={styles.wrapper}>
               {data.map((item) => {
                 return <Cards album={item} />;
