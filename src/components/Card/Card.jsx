@@ -4,54 +4,63 @@ import styles from "./Card.module.css";
 import Tooltip from "@mui/material/Tooltip";
 import Chip from "@mui/material/Chip";
 
-
-
-function Cards({ album }) {
-    const type = album.type;
-    
-    const getCard = (type) => {
-        const { image, follows, title, songs } = album;
-        return (
-          <>
-            {type !== "Jaz" && (
-              <Tooltip title={`${songs.length}songs`} placement="top" arrow>
-                <div className={styles.wrapper}>
-                  <div className={styles.card}>
-                    <img src={image} alt="ima" />
-                    <div className={styles.banner}>
-                      <Chip
-                        label={`${follows} follows`}
-                        size="small"
-                        className={styles.chip}
-                      ></Chip>
-                    </div>
-                    <div className={styles.titleWrapper}>
-                      <p className={styles.para}>{title}</p>
-                    </div>
-                  </div>
-                </div>
-              </Tooltip>
-            )}
-            {type === "Jaz" && (
-              <div className={styles.wrapper}>
-                <div className={styles.card}>
-                  <img src={image} alt="ima" />
-                  <div className={styles.banner}>
-                    <Chip
-                      label={`follows`}
-                      size="small"
-                      className={styles.chip}
-                    ></Chip>
-                  </div>
-                  <div className={styles.titleWrapper}>
-                    <p className={styles.para}>{title}</p>
-                  </div>
-                </div>
+const getAlbumCard = (album) => {
+  const { image, follows, title, songs } = album;
+  return (
+    <>
+      {
+        <Tooltip title={`${songs.length}songs`} placement="top" arrow>
+          <div className={styles.wrapper}>
+            <div className={styles.card}>
+              <img src={image} alt="ima" />
+              <div className={styles.banner}>
+                <Chip
+                  label={`${follows} follows`}
+                  size="small"
+                  className={styles.chip}
+                ></Chip>
               </div>
-            )}
-          </>
-        );
-      };
-      return getCard(type);
+              <div className={styles.titleWrapper}>
+                <p className={styles.para}>{title}</p>
+              </div>
+            </div>
+          </div>
+        </Tooltip>
+      }
+    </>
+  )
+}
+const getSongsCard = (album) => {
+  const { image, likes, title } = album;
+  return (
+    <>
+      {
+          <div className={styles.wrapper}>
+            <div className={styles.card}>
+              <img src={image} alt="ima" />
+              <div className={styles.banner}>
+                <Chip
+                  label={`${likes} Likes`}
+                  size="small"
+                  className={styles.chip}
+                ></Chip>
+              </div>
+              <div className={styles.titleWrapper}>
+                <p className={styles.para}>{title}</p>
+              </div>
+            </div>
+          </div>
+      }
+    </>
+  )
+}
+
+function Cards({ album,songs }) {
+  if(!songs){
+    return getAlbumCard(album)
+  }
+  if(songs){
+    return getSongsCard(album)
+  }
 }
 export default Cards;
