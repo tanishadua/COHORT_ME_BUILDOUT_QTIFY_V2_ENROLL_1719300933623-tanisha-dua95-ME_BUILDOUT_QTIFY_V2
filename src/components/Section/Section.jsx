@@ -12,7 +12,7 @@ function Section({ data, title }) {
       <div className={styles.header}>
           <h3>{title}</h3>
           <button className={styles.button} onClick={handleToggle}>
-            {toggle ? "show all" : "Collapse All"}
+            {toggle ? "Show all" : "Collapse All"}
           </button>
       </div>
       {data && data.length > 0 && (
@@ -24,7 +24,7 @@ function Section({ data, title }) {
               })}
             </div>
           ) : (
-            <div>
+            <div className={styles.carousel}>
               <Carousel
                 data={data}
                 component={(data) => <Cards album={data} />}

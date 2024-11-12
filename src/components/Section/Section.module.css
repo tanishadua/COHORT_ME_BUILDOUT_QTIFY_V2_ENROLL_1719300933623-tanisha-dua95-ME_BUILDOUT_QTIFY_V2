@@ -24,4 +24,6 @@
     align-items: baseline;
     color: white;
   }
-  
+  .carousel{
+    margin-bottom: -50px ;
+  }
